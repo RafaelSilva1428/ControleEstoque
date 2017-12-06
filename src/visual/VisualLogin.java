@@ -3,6 +3,7 @@ package visual;
 import controle.ControleFuncionario;
 import controle.ControleLogin;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import modelo.FuncionarioLogado;
 
@@ -18,6 +19,7 @@ public class VisualLogin extends javax.swing.JFrame {
         setVisible(true);
         setResizable(false);
         setLocationRelativeTo(null);
+        
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,6 +45,18 @@ public class VisualLogin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Senha : ");
+
+        jTFUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFUsuarioKeyPressed(evt);
+            }
+        });
+
+        jPFSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPFSenhaKeyPressed(evt);
+            }
+        });
 
         jBEntrar.setText("Entrar");
         jBEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +143,32 @@ public class VisualLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-        
+        validarUsuarioESenhaFuncionario();     
+    }//GEN-LAST:event_jBEntrarActionPerformed
+
+    private void jLRecuperarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLRecuperarSenhaMouseClicked
+        VisualRecuperarSenha visualRecuperar = new VisualRecuperarSenha();
+        visualRecuperar.setVisible(true);
+    }//GEN-LAST:event_jLRecuperarSenhaMouseClicked
+
+    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBSairActionPerformed
+
+    private void jTFUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFUsuarioKeyPressed
+                                       
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { 
+            validarUsuarioESenhaFuncionario();  
+        }
+    }//GEN-LAST:event_jTFUsuarioKeyPressed
+
+    private void jPFSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPFSenhaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { 
+            validarUsuarioESenhaFuncionario(); 
+        }
+    }//GEN-LAST:event_jPFSenhaKeyPressed
+    
+    private void validarUsuarioESenhaFuncionario(){
         String usuario = jTFUsuario.getText();
         String senha = jPFSenha.getText();
         
@@ -158,18 +197,8 @@ public class VisualLogin extends javax.swing.JFrame {
                 jPFSenha.setText("");
             }
         }
-    }//GEN-LAST:event_jBEntrarActionPerformed
-
-    private void jLRecuperarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLRecuperarSenhaMouseClicked
-        VisualRecuperarSenha visualRecuperar = new VisualRecuperarSenha();
-        visualRecuperar.setVisible(true);
-    }//GEN-LAST:event_jLRecuperarSenhaMouseClicked
-
-    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
-        dispose();
-    }//GEN-LAST:event_jBSairActionPerformed
-
-
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBEntrar;
     private javax.swing.JButton jBSair;
