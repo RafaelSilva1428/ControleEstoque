@@ -1,6 +1,7 @@
 package visual;
 
 import controle.ControleFuncionario;
+import javax.swing.JOptionPane;
 import modelo.Funcionario;
 import modelo.FuncionarioLogado;
 
@@ -315,8 +316,8 @@ public class VisualPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMICadastrarFuncionarioActionPerformed
 
     private void jMIVisualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVisualizarFuncionarioActionPerformed
-        visulizarListaFuncionario.obterObjetoFuncionarioLogado(funcionarioLogado);
-        visulizarListaFuncionario.setVisible(true);
+        //visulizarListaFuncionario.obterObjetoFuncionarioLogado(funcionarioLogado);
+        //visulizarListaFuncionario.setVisible(true);
     }//GEN-LAST:event_jMIVisualizarFuncionarioActionPerformed
 
     private void jMIInicioMinhasInforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIInicioMinhasInforActionPerformed
@@ -335,7 +336,12 @@ public class VisualPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIAlterarSenhaActionPerformed
 
     private void jMISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISairActionPerformed
+        VisualLogin visualLogin = new VisualLogin();
+        
+        //this frame
         dispose();
+        JOptionPane.showMessageDialog(null, "Logout realizado co sucesso !");
+        visualLogin.setVisible(true);
     }//GEN-LAST:event_jMISairActionPerformed
 
     private void jMIClienteVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIClienteVisualizarActionPerformed
