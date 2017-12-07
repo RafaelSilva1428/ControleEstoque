@@ -312,6 +312,7 @@ public class VisualPrincipal extends javax.swing.JFrame {
 
     private void jMICadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrarFuncionarioActionPerformed
         VisualCadastarFuncionario cadastrarFuncionario = new VisualCadastarFuncionario();
+        cadastrarFuncionario.obterFuncionarioLogado(funcionarioLogado);
         cadastrarFuncionario.setVisible(true);
     }//GEN-LAST:event_jMICadastrarFuncionarioActionPerformed
 

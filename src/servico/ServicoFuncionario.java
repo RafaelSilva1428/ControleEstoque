@@ -9,24 +9,29 @@ public class ServicoFuncionario {
     FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
     ServicoEndereco servicoEndereco = new ServicoEndereco();
     
-    public String InserirFuncionario(Funcionario funcionario){
+    public String InserirFuncionario(FuncionarioLogado funcLogado, Funcionario funcionario){
         boolean verificarExistenciaEmail = verificarExistenciaEmail(funcionario);
         
-        if(!verificarExistenciaEmail){
-            boolean resultadoCadastroEndereco = servicoEndereco.InserirEndereco(funcionario.getEndereco());
-            if(resultadoCadastroEndereco){
-                boolean resultadoCadastro = funcionarioDAO.inserirPessoa(funcionario);
-                if(resultadoCadastro){
-                    return ""; 
+        if(funcLogado.getCargo().equals("GERENTE")){
+            if(!verificarExistenciaEmail){
+                boolean resultadoCadastroEndereco = servicoEndereco.InserirEndereco(funcionario.getEndereco());
+                if(resultadoCadastroEndereco){
+                    boolean resultadoCadastro = funcionarioDAO.inserirPessoa(funcionario);
+                    if(resultadoCadastro){
+                        return ""; 
+                    }else{
+                        return "Cadastro";
+                    } 
                 }else{
                     return "Cadastro";
-                } 
+                }
             }else{
-                return "Cadastro";
+                return "Email Existente";
             }
         }else{
-            return "Email Existente";
+            return "Sem permissão";
         }
+        
          
     }
     

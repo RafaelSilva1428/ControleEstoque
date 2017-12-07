@@ -8,8 +8,8 @@ import servico.ServicoFuncionario;
 public class ControleFuncionario {
     ServicoFuncionario servicoFuncionario = new ServicoFuncionario();
     
-    public String cadastrarFuncionario (Funcionario funcionario){
-        String resultadoCadastro = servicoFuncionario.InserirFuncionario(funcionario);
+    public String cadastrarFuncionario (FuncionarioLogado funcLogado, Funcionario funcionario){
+        String resultadoCadastro = servicoFuncionario.InserirFuncionario(funcLogado, funcionario);
         return resultadoCadastro;
     }
     

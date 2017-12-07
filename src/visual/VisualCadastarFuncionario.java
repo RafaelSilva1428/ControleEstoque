@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import modelo.Endereco;
 import modelo.Funcionario;
+import modelo.FuncionarioLogado;
 import util.BuscarCep;
 import util.ValidarCPF;
 import util.ValidarData;
@@ -13,12 +14,17 @@ import util.ValidarEmail;
 public class VisualCadastarFuncionario extends javax.swing.JDialog {
     ControleFuncionario controleFuncionario = new ControleFuncionario();
     Funcionario func = new Funcionario();
+    FuncionarioLogado funcionarioLogado = new FuncionarioLogado();
     Endereco end = new Endereco();
 
     VisualCadastarFuncionario() {
         setModal(true);
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    public void obterFuncionarioLogado(FuncionarioLogado funcLogado){
+        funcionarioLogado = funcLogado;
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -325,7 +331,7 @@ public class VisualCadastarFuncionario extends javax.swing.JDialog {
                     if(verificarDataNascimento){
                         if(ValidarCPF.verificar(jTFCpf.getText())){
                             func = formarObjetoFuncionario();
-                            String resultadoCadastro = controleFuncionario.cadastrarFuncionario(func);
+                            String resultadoCadastro = controleFuncionario.cadastrarFuncionario(funcionarioLogado, func);
                             if(resultadoCadastro.equals("")){
                                 JOptionPane.showMessageDialog(null, "Cadastro de funcionário(a) "+jTFNomeCompleto.getText()+
                                         " realizado com sucesso");
@@ -345,22 +351,22 @@ public class VisualCadastarFuncionario extends javax.swing.JDialog {
                                 jFTFDNascimento.setText("");
                                 jFTFTelefone.setText("");
                             }else{
-                                JOptionPane.showMessageDialog(null,"ERROR : "+resultadoCadastro);
+                                JOptionPane.showMessageDialog(null,"ERROR : "+resultadoCadastro, "Erro",JOptionPane.YES_NO_OPTION);
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null, "CPF inválida");
+                            JOptionPane.showMessageDialog(null, "CPF inválida", "Erro",JOptionPane.YES_NO_OPTION);
                         }
                     }else{
-                        JOptionPane.showMessageDialog(null, "Data de nascimento inválida");
+                        JOptionPane.showMessageDialog(null, "Data de nascimento inválida", "Erro",JOptionPane.YES_NO_OPTION);
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "Email inválido");
+                    JOptionPane.showMessageDialog(null, "Email inválido", "Erro",JOptionPane.YES_NO_OPTION);
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Alguns campo(s) númerico(s) inválido");
+                JOptionPane.showMessageDialog(null, "Alguns campo(s) númerico(s) inválido", "Erro",JOptionPane.YES_NO_OPTION);
             }   
         }else{
-            JOptionPane.showMessageDialog(null, "Alguns campo(s) texto(s) falta(m) conteúdo");
+            JOptionPane.showMessageDialog(null, "Alguns campo(s) texto(s) falta(m) conteúdo", "Erro",JOptionPane.YES_NO_OPTION);
         }
     }//GEN-LAST:event_jBCadastarActionPerformed
 
