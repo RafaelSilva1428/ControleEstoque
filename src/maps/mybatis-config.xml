@@ -18,9 +18,9 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://mysql552.umbler.com:41890/controledestoque"/>
-                <property name="username" value="aluno25"/>
-                <property name="password" value="alunoestacio2016"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/db_controlestoque"/>
+                <property name="username" value="root"/>
+                <property name="password" value="raf88779"/>
                 <property name="poolPingQuery" value="SELECT id FROM user WHERE id = 1" />
                 <property name="poolPingEnabled" value="true" />
             </dataSource>
