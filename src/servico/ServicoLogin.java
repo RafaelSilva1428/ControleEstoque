@@ -4,6 +4,7 @@ import dao.LoginDAO;
 import java.util.Random;
 import modelo.Funcionario;
 import org.apache.commons.mail.EmailException;
+import util.CriptografarSenha;
 import util.EnviarEmail;
 import util.GerarCodigoAleatorio;
 
@@ -16,7 +17,8 @@ public class ServicoLogin {
         
         if(func != null){
             if(func.getEmail().equals(email)){
-                if(func.getSenha().equals(senha)){
+                String senhaCriptografada = CriptografarSenha.criptografar(senha);
+                if(func.getSenha().equals(senhaCriptografada)){
                     return true;
                 }else{
                     return false;

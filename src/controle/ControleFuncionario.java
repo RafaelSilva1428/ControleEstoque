@@ -4,13 +4,16 @@ import java.util.List;
 import modelo.Funcionario;
 import modelo.FuncionarioLogado;
 import servico.ServicoFuncionario;
+import util.CriptografarSenha;
 
 public class ControleFuncionario {
     ServicoFuncionario servicoFuncionario = new ServicoFuncionario();
     
     public String cadastrarFuncionario (FuncionarioLogado funcLogado, Funcionario funcionario){
+        criptografarSenhaFuncionario(funcionario);
         String resultadoCadastro = servicoFuncionario.InserirFuncionario(funcLogado, funcionario);
         return resultadoCadastro;
+        
     }
     
     public FuncionarioLogado selecionarFuncionarioPorEmail(String email){
@@ -35,6 +38,11 @@ public class ControleFuncionario {
     
     public String atualizarStatusFuncionario(FuncionarioLogado funcLogado, Funcionario funcionario){
         return servicoFuncionario.alterarStatusFuncionario(funcLogado, funcionario);
+    }
+    
+    public void criptografarSenhaFuncionario(Funcionario funcionario){
+        String senhaFuncionarioCriptografada = CriptografarSenha.criptografar(funcionario.getSenha());
+        funcionario.setSenha(senhaFuncionarioCriptografada);
     }
     
 }

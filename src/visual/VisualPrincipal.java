@@ -317,8 +317,8 @@ public class VisualPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMICadastrarFuncionarioActionPerformed
 
     private void jMIVisualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVisualizarFuncionarioActionPerformed
-        //visulizarListaFuncionario.obterObjetoFuncionarioLogado(funcionarioLogado);
-        //visulizarListaFuncionario.setVisible(true);
+        visulizarListaFuncionario.obterObjetoFuncionarioLogado(funcionarioLogado);
+        visulizarListaFuncionario.setVisible(true);
     }//GEN-LAST:event_jMIVisualizarFuncionarioActionPerformed
 
     private void jMIInicioMinhasInforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIInicioMinhasInforActionPerformed
