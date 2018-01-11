@@ -45,8 +45,10 @@ public class ServicoLogin {
         Funcionario func = buscarFuncionario(email);
         if(func != null){
             String codigoVerificacao = gerarCodigoSenhaTemporaria();
-            String atualizarSenha = atualizarSenhaFuncionario(email, func.getSenha(), codigoVerificacao);
-            if(atualizarSenha.equals("")){
+            
+            boolean atualizarSenha = atualizarSenhaSolicitadaPorRecuperacaoDeSenha(email, codigoVerificacao);
+            
+            if(atualizarSenha){
                 servicoFuncionario.alterarStatusAlteracaoSenhaFuncionario(func.getId());
                 String senha = codigoVerificacao;
                 String remetente = email;
@@ -67,13 +69,30 @@ public class ServicoLogin {
         }
     }
     
+    public boolean atualizarSenhaSolicitadaPorRecuperacaoDeSenha(String email, String codigoVerificacao){
+        Funcionario func = new Funcionario();
+        
+        String codigoVerificacaoCriptografado = CriptografarSenha.criptografar(codigoVerificacao);
+            
+        func.setEmail(email);
+        func.setSenha(codigoVerificacaoCriptografado);
+        
+        boolean atualizarSenha = loginDAO.atualizarSenhaFuncionario(func);
+        if(atualizarSenha){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     public String atualizarSenhaFuncionario(String email, String senha, String novaSenha){
         boolean verificarLogin = verificarLogin(email, senha);
         Funcionario func = new Funcionario();
         
         if(verificarLogin == true){
+            String codigoVerificacaoCriptografado = CriptografarSenha.criptografar(novaSenha);
             func.setEmail(email);
-            func.setSenha(novaSenha);
+            func.setSenha(codigoVerificacaoCriptografado);
             boolean atualizarSenha = loginDAO.atualizarSenhaFuncionario(func);
             if(atualizarSenha){
                 return "";
